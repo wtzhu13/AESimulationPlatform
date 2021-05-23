@@ -28,7 +28,7 @@ function varargout = ui(varargin)
 
 % Edit the above text to modify the response to help ui
 
-% Last Modified by GUIDE v2.5 23-May-2021 11:03:59
+% Last Modified by GUIDE v2.5 23-May-2021 18:35:20
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -228,4 +228,70 @@ else
     disp([fullfile(path,file)]);
     image = imread([fullfile(path,file)]);
     imshow(image);
+end
+
+function edit_FN_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_FN (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_FN as text
+%        str2double(get(hObject,'String')) returns contents of edit_FN as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_FN_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_FN (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit_gain_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_gain (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_gain as text
+%        str2double(get(hObject,'String')) returns contents of edit_gain as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_gain_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_gain (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+function edit_exposureT_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_exposureT (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_exposureT as text
+%        str2double(get(hObject,'String')) returns contents of edit_exposureT as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_exposureT_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_exposureT (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
 end
