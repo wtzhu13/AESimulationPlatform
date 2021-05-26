@@ -175,18 +175,13 @@ if image == 0
 else
     set(handles.edit_frames,'string',framesCount);
     while detaLu > 16
-        % 计算当前图像的亮度
         currentLu = globalExposure(image);
         disp(currentLu);
         set(handles.edit_current, 'string', currentLu);
-        
         target = str2num(get(handles.edit_target,'String'));
         detaLu = abs(currentLu - target);
         disp(detaLu);
-        
-        % 调试阶段暂定1S便于观察更新变化
         pause(1);
-        % 更新帧数统计值
         framesCount = framesCount + 1;
         set(handles.edit_frames,'string',framesCount);
         
@@ -197,13 +192,11 @@ else
         set(handles.edit_FN, 'string', parametetsList(2));
         set(handles.edit_gain, 'string', parametetsList(4));
         set(handles.edit_exposureT, 'string', parametetsList(6));
-        % 更新显示区域显示的图片内容
         image = imread([fullfile(path, nextFrameFileName)]);
         imshow(image);
         currentLu = globalExposure(image);
         disp(currentLu);
         set(handles.edit_current, 'string', currentLu);
-        % 重新计算detaLu的值
         detaLu = 10;
     end    
 end

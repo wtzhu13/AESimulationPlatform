@@ -4,5 +4,5 @@
 %% fuction: я╟уробр╩ж║м╪ф╛
 %% --------------------------------
 function nextFrameName = nextFrame()
-    nextFrameName = '2.jpg';
+    nextFrameName = 'FN_18_GAIN_1_ET_8000.jpg';
 end
