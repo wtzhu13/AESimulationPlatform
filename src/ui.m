@@ -30,7 +30,7 @@ function varargout = ui(varargin)
 
 % Last Modified by GUIDE v2.5 23-May-2021 18:35:20
 
-% Begin initialization code - DO NOT EDIT
+% Begin initialization code - DO NOT EDIT  mfilename
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -191,7 +191,7 @@ else
         set(handles.edit_frames,'string',framesCount);
         
         % 获取下一帧图像
-        nextFrameFileName = nextFrame();
+        nextFrameFileName = nextFrame(target);
         % 获取下一帧图像的参数，并设置到平台界面
         parametetsList = splitParameters(nextFrameFileName);
         set(handles.edit_FN, 'string', parametetsList(2));
@@ -230,7 +230,8 @@ function pushbutton_first_frame_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_first_frame (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% 选择第一针采样图片
+% 选择第一帧采样图片
+initUI(handles);
 global image;     % 定义全局变量方便计算
 global path;
 image = 0;
@@ -314,3 +315,14 @@ function edit_exposureT_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+function initUI(handles)
+% handles    structure with handles and user data (see GUIDATA)
+% 初始化UI界面，保证连续运行时，每次选择第一帧图像时参数能回归初始值
+set(handles.edit_FN, 'string', '');
+set(handles.edit_gain, 'string', '');
+set(handles.edit_exposureT, 'string', '');
+%set(handles.edit_target, 'string', '128');
+set(handles.edit_current, 'string', '');
+set(handles.edit_frames, 'string', '');
+
