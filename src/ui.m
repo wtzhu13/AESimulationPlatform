@@ -28,7 +28,7 @@ function varargout = ui(varargin)
 
 % Edit the above text to modify the response to help ui
 
-% Last Modified by GUIDE v2.5 23-May-2021 18:35:20
+% Last Modified by GUIDE v2.5 30-May-2021 21:05:04
 
 % Begin initialization code - DO NOT EDIT  mfilename
 gui_Singleton = 1;
@@ -47,6 +47,7 @@ if nargout
 else
     gui_mainfcn(gui_State, varargin{:});
 end
+
 % End initialization code - DO NOT EDIT
 
 
@@ -325,4 +326,59 @@ set(handles.edit_exposureT, 'string', '');
 %set(handles.edit_target, 'string', '128');
 set(handles.edit_current, 'string', '');
 set(handles.edit_frames, 'string', '');
+
+
+
+% --------------------------------------------------------------------
+function file_Callback(hObject, eventdata, handles)
+% hObject    handle to file (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function openFile_Callback(hObject, eventdata, handles)
+% hObject    handle to openFile (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+pushbutton_first_frame_Callback(hObject, eventdata, handles)
+
+% --------------------------------------------------------------------
+function exit_Callback(hObject, eventdata, handles)
+% hObject    handle to exit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+quit()
+
+
+% --------------------------------------------------------------------
+function help_1_Callback(hObject, eventdata, handles)
+% hObject    handle to help_1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function help_Callback(hObject, eventdata, handles)
+% hObject    handle to help (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+web('./doc/doc.html')
+
+
+% --------------------------------------------------------------------
+function about_Callback(hObject, eventdata, handles)
+% hObject    handle to about (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+myicon = imread('./rsc/about.png');
+h = msgbox('https://github.com/wtzhu13','Prompt','custom', myicon);
+
+
+% --------------------------------------------------------------------
+function run_Callback(hObject, eventdata, handles)
+% hObject    handle to run (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+pushbutton_run_Callback(hObject, eventdata, handles)
 
