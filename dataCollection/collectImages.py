@@ -16,14 +16,19 @@ author      |   Date    |   Describe
 wtzhu       | 20210602  |
 ------------------------------------------    
 """
+
+# ---------------------import files---------------------------
 import os
 import shutil
 import pyautogui as pag
 from time import sleep
 from time import time
+
+# ----------------------global values-------------------------
 pag.PAUSE = 0.5
 
 
+# ----------------------func files----------------------------
 def auto_save_images():
     """
     save images auto bu use pyautogui
@@ -55,9 +60,12 @@ def format_file_name(us):
     path = "E:\\Mysher\\Sigmastar\\SS333\\tools\\apitool\\Image"
     file_type = ".jpg"
     for index, value in enumerate(os.listdir(path)):
+        # file type is .jpg
         if value.endswith(file_type):
             print(value)
+            # rename file
             os.rename(path + "\\" + value, path + "\\" + "FN_18_GAIN_1_ET_{}.jpg".format(us))
+            # mv renamed file to The specified location
             shutil.move(path + "\\" + "FN_18_GAIN_1_ET_{}.jpg".format(us), path + "\\data")
 
 

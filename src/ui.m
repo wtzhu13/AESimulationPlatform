@@ -168,6 +168,8 @@ function pushbutton_run_Callback(hObject, eventdata, handles)
 % end 
 global image;
 global path;
+global currentFile;
+
 detaLu = 255;
 framesCount = 1;
 if image == 0
@@ -175,15 +177,17 @@ if image == 0
     h = msgbox('You need choose first frame image!','Prompt','custom', myicon);
 else
     set(handles.edit_frames,'string',framesCount);
+    target = get(handles.edit_target,'String');
+    target = str2num(target);
     while detaLu > 16
         % 计算当前图像的亮度
-        currentLu = globalExposure(image);
+        currentLu = int8(globalExposure(image));
         disp(currentLu);
         set(handles.edit_current, 'string', currentLu);
         
-        target = str2num(get(handles.edit_target,'String'));
-        detaLu = abs(currentLu - target);
-        disp(detaLu);
+        
+        detaLu = abs(19 - target);
+        disp(currentLu - target);
         
         % 调试阶段暂定1S便于观察更新变化
         pause(1);
@@ -192,7 +196,8 @@ else
         set(handles.edit_frames,'string',framesCount);
         
         % 获取下一帧图像
-        nextFrameFileName = nextFrame(target);
+        nextFrameFileName = nextFrame(target, currentFile);
+        currentFile = nextFrameFileName;
         % 获取下一帧图像的参数，并设置到平台界面
         parametetsList = splitParameters(nextFrameFileName);
         set(handles.edit_FN, 'string', parametetsList(2));
@@ -201,11 +206,12 @@ else
         % 更新显示区域显示的图片内容
         image = imread([fullfile(path, nextFrameFileName)]);
         imshow(image);
-        currentLu = globalExposure(image);
+        currentLu = int8(globalExposure(image));
         disp(currentLu);
         set(handles.edit_current, 'string', currentLu);
         % 重新计算detaLu的值
-        detaLu = 10;
+        detaLu = abs(currentLu - target);
+%     detaLu = 10;
     end    
 end
 
@@ -235,8 +241,10 @@ function pushbutton_first_frame_Callback(hObject, eventdata, handles)
 initUI(handles);
 global image;     % 定义全局变量方便计算
 global path;
+global currentFile;
 image = 0;
 [file, path] = uigetfile({'*.jpg; *.png, *.bmp, *.jpeg'}, 'img select'); %进入文件夹选框
+currentFile = file;
 
 if file == 0
     myicon = imread('./rsc/info.png');

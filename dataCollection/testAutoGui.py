@@ -16,9 +16,12 @@ author      |   Date    |   Describe
 wtzhu       |  20210601 |   test file
 ------------------------------------------    
 """
+
+# ---------------------import files---------------------------
 import pyautogui as pag
 
 
+# ----------------------func files----------------------------
 def touch_txt():
     """
 

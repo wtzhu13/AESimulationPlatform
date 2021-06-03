@@ -1,11 +1,7 @@
-% RGB in matlab
-[file, path] = uigetfile({'*.jpg; *.png, *.bmp, *.jpeg'}, 'img select'); %进入文件夹选框
-if file == 0
-    myicon = imread('./rsc/info.png');
-    h = msgbox('Nothing had been choosen!','Prompt','custom', myicon);
-else
-    disp([fullfile(path,file)]);
-    image = imread([fullfile(path,file)]);
-    hsl = rgb2hsl(image);
-    imshow(hsl(:,:,3), []);
-end
+global image;
+image = imread('E:\\Fred\\ISP\\AEDataSet\\FN_18_GAIN_1_ET_300.jpg');
+nextFrameName = nextFrame(128, 'FN_18_GAIN_1_ET_300.jpg');
+disp(nextFrameName)
+
+%parametetsList = splitParameters('FN_18_GAIN_1_ET_300.jpg');
+%t = parametetsList(6)
