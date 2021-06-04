@@ -1,7 +1,7 @@
 %% --------------------------------
 %% author:wtzhu
 %% date: 20210203
-%% fuction: AE模拟平台界面设计及回调函数
+%% fuction: UI design
 %% --------------------------------
 
 function varargout = ui(varargin)
@@ -155,20 +155,11 @@ function pushbutton_run_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
-% count = 1;
-% target = str2num(get(handles.edit_target,'String'));
-% disp(target);
-% while count < 4
-%     image = imread(sprintf('./img/%d.jpg', count));
-%     imshow(image);
-%     set(handles.edit_frames,'string',count);
-%     pause(1);
-%     count = count + 1;
-% end 
+% -----------global velue------------
 global image;
 global path;
 global currentFile;
+% -----------------------------------
 
 detaLu = 255;
 framesCount = 1;
@@ -176,43 +167,54 @@ if image == 0
     myicon = imread('./rsc/info.png');
     h = msgbox('You need choose first frame image!','Prompt','custom', myicon);
 else
-    set(handles.edit_frames,'string',framesCount);
+    % set frame show
+    set(handles.edit_frames, 'string', framesCount);
+    % get target and transform to double
     target = get(handles.edit_target,'String');
     target = str2num(target);
+    % calculate current Lu 
+    currentLu = int32(globalExposure(image));
+    fprintf('currentLu: %d\n', currentLu);
+    set(handles.edit_current, 'string', currentLu);
+    detaLu = abs(currentLu - target);
+    fprintf('detaLu=currentLu - target: %d\n', (currentLu - target));
+    
+    % return func if detaLu less than 16(this thd can be modified)
+    if detaLu < 16
+        fprintf('current lu is OK!\n');
+        set(handles.edit_frames,'string',framesCount);
+        myicon = imread('./rsc/info.png');
+        h = msgbox('current Lu is Ok!','Prompt','custom', myicon);
+        return;
+    end
+    fprintf('-----------END OF %dth FRAME----------', framesCount)
     while detaLu > 16
-        % 计算当前图像的亮度
-        currentLu = int8(globalExposure(image));
-        disp(currentLu);
-        set(handles.edit_current, 'string', currentLu);
-        
-        
-        detaLu = abs(19 - target);
-        disp(currentLu - target);
-        
-        % 调试阶段暂定1S便于观察更新变化
+        % wait 1s to debug
         pause(1);
-        % 更新帧数统计值
+        % update frmae count
         framesCount = framesCount + 1;
         set(handles.edit_frames,'string',framesCount);
         
-        % 获取下一帧图像
+        % get the next frame image
         nextFrameFileName = nextFrame(target, currentFile);
         currentFile = nextFrameFileName;
-        % 获取下一帧图像的参数，并设置到平台界面
+        % get parameters of the next image, and set to UI
         parametetsList = splitParameters(nextFrameFileName);
         set(handles.edit_FN, 'string', parametetsList(2));
         set(handles.edit_gain, 'string', parametetsList(4));
         set(handles.edit_exposureT, 'string', parametetsList(6));
-        % 更新显示区域显示的图片内容
+        fprintf('-----------END OF %dth FRAME----------', framesCount)
+        % update image which showed on UI
         image = imread([fullfile(path, nextFrameFileName)]);
         imshow(image);
-        currentLu = int8(globalExposure(image));
-        disp(currentLu);
+        currentLu = int32(globalExposure(image));
+        fprintf('currentLu of updated image: %d\n', currentLu);
         set(handles.edit_current, 'string', currentLu);
-        % 重新计算detaLu的值
+        % calculate dataLu
         detaLu = abs(currentLu - target);
-%     detaLu = 10;
-    end    
+    end
+    myicon = imread('./rsc/info.png');
+    h = msgbox('current Lu is Ok!','Prompt','custom', myicon);
 end
 
 
@@ -237,19 +239,25 @@ function pushbutton_first_frame_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_first_frame (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% 选择第一帧采样图片
+% choose the 1th frame image
 initUI(handles);
-global image;     % 定义全局变量方便计算
+clc;
+
+% -------------global value-----------
+global image;     
 global path;
 global currentFile;
+% ------------------------------------
 image = 0;
-[file, path] = uigetfile({'*.jpg; *.png, *.bmp, *.jpeg'}, 'img select'); %进入文件夹选框
+% select image 
+[file, path] = uigetfile({'*.jpg; *.png, *.bmp, *.jpeg'}, 'img select'); 
 currentFile = file;
 
 if file == 0
     myicon = imread('./rsc/info.png');
     h = msgbox('Nothing had been choosen!','Prompt','custom', myicon);
 else
+    % set the parameters of the first frame to the UI
     parametetsList = splitParameters(file);
     set(handles.edit_FN, 'string', parametetsList(2));
     set(handles.edit_gain, 'string', parametetsList(4));
@@ -327,7 +335,7 @@ end
 
 function initUI(handles)
 % handles    structure with handles and user data (see GUIDATA)
-% 初始化UI界面，保证连续运行时，每次选择第一帧图像时参数能回归初始值
+% init UI, make sure the parameters to reset each runing 
 set(handles.edit_FN, 'string', '');
 set(handles.edit_gain, 'string', '');
 set(handles.edit_exposureT, 'string', '');
@@ -381,6 +389,7 @@ function about_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 myicon = imread('./rsc/about.png');
 h = msgbox('https://github.com/wtzhu13','Prompt','custom', myicon);
+web('https://github.com/wtzhu13')
 
 
 % --------------------------------------------------------------------

@@ -1,7 +1,7 @@
 %% --------------------------------
 %% author:wtzhu
 %% date: 20210526
-%% fuction: 从文件名分离AE参数
+%% fuction: split parameters from fileName
 %% --------------------------------
 function parametersList = splitParameters(file)
     parametersList = regexp(file, '_', 'split');

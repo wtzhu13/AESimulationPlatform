@@ -6,7 +6,7 @@ a auto exposure Simulation platform base on Matlab
 
 ### Operation guide
 
-![](D:\ISP\AESimulationPlatform\rsc\ui.png)
+![](..\rsc\ui.png)
 
 The overall interface is designed as above. The luminance value of tatget is set 128 first,  you can modify it in the edit.
 
@@ -20,7 +20,7 @@ The overall interface is designed as above. The luminance value of tatget is set
 
 ### 操作指引：
 
-![](D:\ISP\AESimulationPlatform\rsc\ui.png)
+![](..\rsc\ui.png)
 
 整体界面设计如图所示，默认目标亮度为128的中度灰，也可以自行设置。
 
