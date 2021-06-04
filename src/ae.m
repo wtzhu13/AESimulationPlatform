@@ -1,9 +1,14 @@
-%% --------------------------------
-%% author:wtzhu
-%% date: 20210603
-%% fuction: AE algorithm
-%% --------------------------------
 function nextUs = ae(detaLu, t)
+% ae.m    The kernel AE algorithm
+%   Input:
+%       detaLu    The differenc between target and currentLu  
+%       t         The current exposure time
+%   Output:
+%       nextUs    The exposure time of next frame
+%   Instructions:
+%       author:     wtzhu
+%       e-mail:     wtzhu_13@163.com
+% Last Modified by wtzhu v1.0 2021-06-04
     absDetaLu = abs(detaLu);
     us = str2num(char(t));
     % calculate the detaUS by detaLu

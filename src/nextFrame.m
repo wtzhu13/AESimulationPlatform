@@ -1,9 +1,14 @@
-%% --------------------------------
-%% author:wtzhu
-%% date: 20210531
-%% fuction: return the next frame's fileName
-%% --------------------------------
 function nextFrameName = nextFrame(targetLu, currentFile)
+% nextFrame.m    Find the fileName of the next frame image
+%   Input:
+%       targetLu        The target Lu          
+%       currentFile     The fileName of current frame image
+%   Output:
+%       nextFrameName   FileName of the next frame image 
+%   Instructions:
+%       author:     wtzhu
+%       e-mail:     wtzhu_13@163.com
+% Last Modified by wtzhu v1.0 2021-06-04
     global image;
     currentLu = int32(globalExposure(image));
     fprintf('currentLu: %d\n', currentLu);
