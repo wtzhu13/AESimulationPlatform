@@ -180,7 +180,7 @@ else
     fprintf('detaLu=currentLu - target: %d\n', (currentLu - target));
     
     % return func if detaLu less than 16(this thd can be modified)
-    if detaLu < 16
+    if detaLu <= 8
         fprintf('current lu is OK!\n');
         set(handles.edit_frames,'string',framesCount);
         myicon = imread('./rsc/info.png');
@@ -188,7 +188,7 @@ else
         return;
     end
     fprintf('-----------END OF %dth FRAME----------', framesCount)
-    while detaLu > 16
+    while detaLu > 8
         % wait 1s to debug
         pause(1);
         % update frmae count
@@ -389,7 +389,7 @@ function about_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 myicon = imread('./rsc/about.png');
 h = msgbox('https://github.com/wtzhu13','Prompt','custom', myicon);
-web('https://github.com/wtzhu13')
+web('https://blog.csdn.net/wtzhu_13', '-browser')
 
 
 % --------------------------------------------------------------------

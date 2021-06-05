@@ -9,10 +9,14 @@ function nextUs = ae(detaLu, t)
 %       author:     wtzhu
 %       e-mail:     wtzhu_13@163.com
 % Last Modified by wtzhu v1.0 2021-06-04
+% Algorithm is from ZhouRongzheng's dissertation-'数码相机处理器设计及系统集成'
     absDetaLu = abs(detaLu);
     us = str2num(char(t));
     % calculate the detaUS by detaLu
-    if absDetaLu > 16 && absDetaLu <= 32
+    if absDetaLu > 8 && absDetaLu <= 16
+        disp('detaUs/us is 1/16');
+        detaUs = us / 32;
+    elseif absDetaLu > 16 && absDetaLu <= 32
         disp('detaUs/us is 1/16');
         detaUs = us / 16; 
     elseif absDetaLu > 32 && absDetaLu <= 64

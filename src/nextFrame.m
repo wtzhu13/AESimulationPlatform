@@ -17,7 +17,8 @@ function nextFrameName = nextFrame(targetLu, currentFile)
     parametersList = splitParameters(currentFile);
     t = parametersList(6);
     % run ae algorithm to find the next frame parameters
-    us = num2str(ae(detaLu, t));
+%     us = num2str(ae(detaLu, t));
+    us = num2str(aeEquationMethod(targetLu));
     nextFrameName = strcat('FN_18_GAIN_1_ET_', us, '.jpg');
     fprintf('the nextFrame: %s\n', nextFrameName);
 end
