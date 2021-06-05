@@ -8,7 +8,7 @@ function nextUs = ae(detaLu, t)
 %   Instructions:
 %       author:     wtzhu
 %       e-mail:     wtzhu_13@163.com
-% Last Modified by wtzhu v1.0 2021-06-04
+% Last Modified by wtzhu v1.0 2021-06-05
 % Algorithm is from ZhouRongzheng's dissertation-'数码相机处理器设计及系统集成'
     absDetaLu = abs(detaLu);
     us = str2num(char(t));

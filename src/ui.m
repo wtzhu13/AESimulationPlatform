@@ -242,7 +242,8 @@ function pushbutton_first_frame_Callback(hObject, eventdata, handles)
 % choose the 1th frame image
 initUI(handles);
 clc;
-
+% show the path
+pwd
 % -------------global value-----------
 global image;     
 global path;
