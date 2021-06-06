@@ -8,6 +8,13 @@ After downloading this project, you can run the exe in the exe floder to test th
 
 ### File structure 
 
+- dataCollection: Collect image date set automatically by Python;
+- doc: Documentation ;
+- exe: Executable file on windows;
+- img: Test images;
+- rsc: Static files;
+- src: The source code.
+
 ```
 AESimulationPlatform
 │  readme.md
@@ -102,6 +109,13 @@ The overall interface is designed as above. The luminance value of tatget is set
 下载该项目后，可直接进入exe目录下运行可执行程序使用平台，如果提示无法运行，请先阅读readme文档，并保证电脑安装同版本的MCR。
 
 ### 文件结构
+
+- dataCollection: 收集数据的Python脚本文件；
+- doc: 说明知道文件；
+- exe: windows上的可执行文件;
+- img: 测试图片;
+- rsc: 静态文件;
+- src: 项目源代码.
 
 ```
 AESimulationPlatform
